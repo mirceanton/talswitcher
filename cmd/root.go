@@ -7,11 +7,13 @@ import (
 )
 
 var configDir string // Global flag for the talosconfig directory
+var version string   // Version of the tool
 
 var rootCmd = &cobra.Command{
-	Use:   "talswitcher",
-	Short: "A tool to switch between Talos contexts",
-	Long:  `talswitcher is a CLI tool to switch between Talos contexts from multiple talosconfig files.`,
+	Use:     "talswitcher",
+	Short:   "A tool to switch between Talos contexts",
+	Long:    `talswitcher is a CLI tool to switch between Talos contexts from multiple talosconfig files.`,
+	Version: version,
 }
 
 func Execute() {

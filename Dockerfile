@@ -9,7 +9,7 @@ ARG VERSION=dev
 WORKDIR /build
 COPY . .
 
-RUN go build -o talswitcher
+RUN go build -ldflags "-s -w -X github.com/mirceanton/talswitcher/cmd.version=${VERSION}" -o talswitcher
 
 
 # =================================================================================================
