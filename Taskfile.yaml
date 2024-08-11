@@ -16,7 +16,7 @@ tasks:
       - internal/*
       - go.mod
       - go.sum
-    cmd: go build -o ${DIR_NAME}
+    cmd: go build -ldflags "-s -w -X github.com/mirceanton/talswitcher/cmd.version=${VERSION}" -o ${DIR_NAME}
 
   run:
     desc: Run the binary.
