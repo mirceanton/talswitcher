@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/siderolabs/talos/pkg/machinery/config/configloader"
+	"github.com/siderolabs/talos/pkg/machinery/client/config"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
@@ -60,19 +60,20 @@ var rootCmd = &cobra.Command{
 
 			// Parse the talosconfig file
 			path := filepath.Join(configDir, file.Name())
-			config, err := configloader.NewFromFile(path)
+			talosconfig, err := config.Open(path)
 			if err != nil {
 				log.WithFields(log.Fields{"file": file.Name()}).Warnf("Failed to parse talosconfig file: %v", err)
 				continue
 			}
 
 			// Add the context to the map
-			contextName := config.Cluster().Name()
-			if _, exists := contextMap[contextName]; exists {
-				log.Fatalf("Duplicate context name '%s' found in files:\n- %s\n- %s", contextName, contextMap[contextName], path)
+			for contextName := range talosconfig.Contexts {
+				if _, exists := contextMap[contextName]; exists {
+					log.Fatalf("Duplicate context name '%s' found in files:\n- %s\n- %s", contextName, contextMap[contextName], path)
+				}
+				contextMap[contextName] = path
+				contextNames = append(contextNames, contextName)
 			}
-			contextNames = append(contextNames, contextName)
-			contextMap[contextName] = path
 		}
 
 		// Check if any contexts were found
@@ -117,14 +118,17 @@ var rootCmd = &cobra.Command{
 			log.Fatalf("Failed to create directory %s: %v", destDir, err)
 		}
 
-		// Copy the selected talosconfig file to the destination
-		sourcePath := contextMap[selectedContext]
-		input, err := os.ReadFile(sourcePath)
+		// Load the talosconfig file for the selected context
+		talosconfig, err := config.Open(contextMap[selectedContext])
 		if err != nil {
-			log.WithFields(log.Fields{"source": sourcePath}).Fatalf("Failed to read source file: %v", err)
+			log.WithFields(log.Fields{"source": contextMap[selectedContext]}).Fatalf("Failed to parse talosconfig file: %v", err)
 		}
 
-		err = os.WriteFile(destPath, input, 0644)
+		// Update the current context
+		talosconfig.Context = selectedContext
+
+		// Write the updated talosconfig back to the file
+		err = talosconfig.Save(destPath)
 		if err != nil {
 			log.WithFields(log.Fields{"destination": destPath}).Fatalf("Failed to write to destination file: %v", err)
 		}
