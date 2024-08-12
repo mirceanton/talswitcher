@@ -24,7 +24,8 @@ jobs:
     uses: mirceanton/reusable-workflows/.github/workflows/docker-release.yaml@main
     secrets: inherit
     with:
-      platforms: linux/amd64, linux/arm64
+      image-name: ghcr.io/${{ github.repository }}
       custom-tag: ${{ inputs.custom-tag }}
+      platforms: linux/amd64, linux/arm64
       build-args: |
         VERSION=${{ inputs.custom-tag || github.ref_name }}
