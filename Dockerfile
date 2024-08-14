@@ -1,7 +1,7 @@
 # =================================================================================================
 # BUILDER STAGE
 # =================================================================================================
-FROM golang:1.23.0-alpine@sha256:44a2d64f00857d544048dd31d8e1fbd885bb90306819f4313d7bc85b87ca04b0 AS builder
+FROM golang:1.23.0-alpine@sha256:d0b31558e6b3e4cc59f6011d79905835108c919143ebecc58f35965bf79948f4 AS builder
 
 ARG PKG=github.com/mirceanton/talswitcher
 ARG VERSION=dev
