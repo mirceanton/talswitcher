@@ -11,8 +11,6 @@ on:
         required: false
   pull_request:
     paths:
-      - Dockerfile
-      - .github/workflows/docker-release.yaml
       - "*.go"
       - "go.mod"
       - "go.sum"
