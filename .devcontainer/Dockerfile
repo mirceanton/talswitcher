@@ -33,7 +33,7 @@ RUN wget https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz && tar xvf 
 ## ================================================================================================
 ## Main image
 ## ================================================================================================
-FROM mcr.microsoft.com/devcontainers/go:1.22-bookworm AS workspace
+FROM mcr.microsoft.com/devcontainers/go:1.23-bookworm AS workspace
 
 ENV EDITOR=vim
 
