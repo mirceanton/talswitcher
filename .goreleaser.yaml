@@ -1,5 +1,11 @@
 ---
+version: 2
+
 project_name: talswitcher
+
+before:
+  hooks:
+    - go mod tidy
 
 builds:
   - env:
@@ -14,7 +20,20 @@ builds:
       - -s -w -X github.com/mirceanton/talswitcher/cmd.version={{.Version}}
 
 archives:
-  - name_template: "{{.ProjectName}}_{{.Os}}_{{.Arch}}"
+  - format: tar.gz
+    name_template: "{{.ProjectName}}_{{.Os}}_{{.Arch}}"
+    format_overrides:
+      - goos: windows
+        format: zip
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^chore:"
+      - "^ci:"
+      - "^docs:"
+      - "^test:"
 
 checksum:
   name_template: "checksums.txt"
