@@ -3,11 +3,26 @@
 name: Go Release
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        type: boolean
+        required: false
+        default: false
+
   push:
     tags: ["*"]
+
+  pull_request:
+    paths:
+      - ".github/workflows/go-release.yaml"
+      - "*.go"
+      - "go.mod"
+      - "go.sum"
 
 jobs:
   release:
     uses: mirceanton/reusable-workflows/.github/workflows/go-release.yaml@main
     secrets: inherit
+    with:
+      dryRun: ${{ github.event_name == 'pull_request' || inputs.dryRun == true }}
