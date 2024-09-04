@@ -67,3 +67,14 @@ docker_manifests:
     image_templates:
       - "ghcr.io/mirceanton/talswitcher:{{ .Version }}-amd64"
       - "ghcr.io/mirceanton/talswitcher:{{ .Version }}-arm64v8"
+
+nfpms:
+  - homepage: https://github.com/mirceanton/talswitcher
+    maintainer: Mircea-Pavel Anton <contact@mirceanton.com>
+    description: A simple tool to switch between Talos Linux contexts.
+    file_name_template: "{{.ProjectName}}_{{.Os}}_{{.Arch}}"
+    license: MIT
+    formats:
+      - deb
+      - rpm
+      - apk
