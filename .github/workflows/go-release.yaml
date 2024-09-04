@@ -3,12 +3,7 @@
 name: Go Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      dryRun:
-        type: boolean
-        required: false
-        default: false
+  workflow_dispatch: {}
 
   push:
     tags: ["*"]
@@ -24,5 +19,3 @@ jobs:
   release:
     uses: mirceanton/reusable-workflows/.github/workflows/go-release.yaml@main
     secrets: inherit
-    with:
-      dryRun: ${{ github.event_name == 'pull_request' || inputs.dryRun == true }}
