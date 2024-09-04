@@ -10,7 +10,7 @@ before:
 builds:
   - env:
       - CGO_ENABLED=0
-    binary: talswitcher
+    binary: "{{.ProjectName}}"
     goos:
       - linux
       - darwin
@@ -18,7 +18,7 @@ builds:
       - amd64
       - arm64
     ldflags:
-      - -s -w -X github.com/mirceanton/talswitcher/cmd.version={{.Version}}
+      - -s -w -X github.com/mirceanton/{{.ProjectName}}/cmd.version={{.Version}}
 
 archives:
   - format: tar.gz
@@ -28,20 +28,33 @@ archives:
         format: zip
 
 changelog:
+  disable: false
+  use: github
   sort: asc
-  filters:
-    exclude:
-      - "^chore:"
-      - "^ci:"
-      - "^docs:"
-      - "^test:"
+  groups:
+    - title: Features
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 0
+    - title: "Bug fixes"
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 1
+    - title: "Docs"
+      regexp: ".*docs.*"
+      order: 10
+    - title: "CI"
+      regexp: ".*ci.*"
+      order: 998
+    - title: Others
+      order: 999
 
 checksum:
+  disable: false
   name_template: "checksums.txt"
+  split: true
 
 dockers:
   - image_templates:
-      - "ghcr.io/mirceanton/talswitcher:{{ .Version }}-amd64"
+      - "ghcr.io/mirceanton/{{.ProjectName}}:{{.Version}}-amd64"
     use: buildx
     dockerfile: Dockerfile
     build_flag_templates:
@@ -51,7 +64,7 @@ dockers:
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
   - image_templates:
-      - "ghcr.io/mirceanton/talswitcher:{{ .Version }}-arm64v8"
+      - "ghcr.io/mirceanton/{{.ProjectName}}:{{.Version}}-arm64v8"
     use: buildx
     goarch: arm64
     dockerfile: Dockerfile
@@ -63,13 +76,13 @@ dockers:
       - "--label=org.opencontainers.image.version={{.Version}}"
 
 docker_manifests:
-  - name_template: "ghcr.io/mirceanton/talswitcher:{{ .Version }}"
+  - name_template: "ghcr.io/mirceanton/{{.ProjectName}}:{{.Version}}"
     image_templates:
-      - "ghcr.io/mirceanton/talswitcher:{{ .Version }}-amd64"
-      - "ghcr.io/mirceanton/talswitcher:{{ .Version }}-arm64v8"
+      - "ghcr.io/mirceanton/{{.ProjectName}}:{{.Version}}-amd64"
+      - "ghcr.io/mirceanton/{{.ProjectName}}:{{.Version}}-arm64v8"
 
 nfpms:
-  - homepage: https://github.com/mirceanton/talswitcher
+  - homepage: https://github.com/mirceanton/{{.ProjectName}}
     maintainer: Mircea-Pavel Anton <contact@mirceanton.com>
     description: A simple tool to switch between Talos Linux contexts.
     file_name_template: "{{.ProjectName}}_{{.Os}}_{{.Arch}}"
