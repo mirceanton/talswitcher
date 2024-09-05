@@ -1,6 +1,8 @@
 {
   "name": "talswitcher",
-  "image": "ghcr.io/mirceanton/talswitcher-devcontainer:sha-990c319",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
