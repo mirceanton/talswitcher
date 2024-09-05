@@ -22,8 +22,7 @@ archives:
 
 checksum:
   disable: false
-  name_template: "checksum_{{.ProjectName}}_{{.Os}}_{{.Arch}}.txt"
-  split: true
+  name_template: "checksums.txt"
 
 changelog:
   disable: false

@@ -11,10 +11,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var configDir string // Global flag for the talosconfig directory
-var logLevel string  // Global flag for the log level
-var logFormat string // Global flag for the log format
-var version string   // Version of the tool
+var (
+	configDir string // Global flag for the talosconfig directory
+	logLevel  string // Global flag for the log level
+	logFormat string // Global flag for the log format
+	version   string // Version of the tool
+)
 
 func setConfigDirectory() {
 	if configDir == "" {
@@ -170,7 +172,7 @@ var rootCmd = &cobra.Command{
 		// Ensure the destination directory exists
 		destDir := filepath.Dir(destPath)
 		log.Debugf("Ensuring destination directory exists: %s", destDir)
-		err = os.MkdirAll(destDir, 0755)
+		err = os.MkdirAll(destDir, 0o755)
 		if err != nil {
 			log.Fatalf("Failed to create directory %s: %v", destDir, err)
 		}
