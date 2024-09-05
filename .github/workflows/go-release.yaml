@@ -15,7 +15,7 @@ on:
       - "cmd/**"
 
 env:
-  DRY_RUN: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
+  DRY_RUN: "false" #${{ github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
 
 jobs:
   goreleaser:
