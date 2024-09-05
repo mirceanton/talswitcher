@@ -48,7 +48,4 @@ nfpms:
     description: A simple tool to switch between Talos Linux contexts.
     file_name_template: "{{.ProjectName}}_{{.Os}}_{{.Arch}}"
     license: MIT
-    formats:
-      - deb
-      - rpm
-      - apk
+    formats: [deb, apk, rpm]
