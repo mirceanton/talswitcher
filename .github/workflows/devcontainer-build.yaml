@@ -6,7 +6,9 @@ on:
   workflow_dispatch: {}
 
   pull_request:
-    paths: [".devcontainer/Dockerfile"]
+    paths:
+      - ".github/workflows/devcontainer-build.yaml"
+      - ".devcontainer/Dockerfile"
 
 jobs:
   release:
