@@ -9,6 +9,12 @@ ARG GOLINT_VERSION=v1.60.3-alpine@sha256:8326b535f6aff1995059a0025449e8fe150b3c8
 ARG GORELEASER_VERSION=v2.2.0@sha256:847eba313710996f4eeeef1ac21a4fd5ea7527e3a500633ae78f40d9baefddac
 
 
+
+
+
+
+
+
 ## ================================================================================================
 # "Build" stage for utilities with docker images already present
 ## ================================================================================================
