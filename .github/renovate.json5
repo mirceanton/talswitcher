@@ -8,6 +8,7 @@
         "docker:enableMajor",
         ":disableRateLimiting",
         ":semanticCommits",
+        "github>mirceanton/talswitcher//.github/configs/renovate/golang-regexes.json5",
         "github>mirceanton/talswitcher//.github/configs/renovate/autoMerge.json5",
         "github>mirceanton/talswitcher//.github/configs/renovate/semanticCommits.json5",
         "github>mirceanton/talswitcher//.github/configs/renovate/labels.json5"
