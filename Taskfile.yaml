@@ -19,3 +19,7 @@ tasks:
   lint:
     desc: Run linter.
     cmd: golangci-lint run --fix
+
+  renovate:
+    desc: Run renovate.
+    cmd: docker run --rm -e LOG_LEVEL=debug -v $(pwd):/app -w /app renovate/renovate:latest --platform=local | tee renovate.log
