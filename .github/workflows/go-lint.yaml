@@ -18,8 +18,8 @@ jobs:
     uses: mirceanton/reusable-workflows/.github/workflows/go-lint.yaml@17d8ef4df857d93b905170956fbbcd56b296e8bb
     secrets: inherit
     with:
-      # Renovate: datasource=golang-version depName=go
-      go-version: "1.22.5"
+      # renovate: datasource=golang-version depName=go
+      go-version: "1.22.0"
 
       # renovate: datasource=docker depName=golangci/golangci-lint
-      golangci-version: "v1.60.3"
+      golangci-version: "v1.60.0"
