@@ -8,9 +8,28 @@
         "docker:enableMajor",
         ":disableRateLimiting",
         ":semanticCommits",
-        "github>mirceanton/talswitcher//.github/configs/renovate/golang-regexes.json5",
         "github>mirceanton/talswitcher//.github/configs/renovate/autoMerge.json5",
         "github>mirceanton/talswitcher//.github/configs/renovate/semanticCommits.json5",
         "github>mirceanton/talswitcher//.github/configs/renovate/labels.json5"
+    ],
+    "customManagers": [
+        {
+            "customType": "regex",
+            "description": [
+                "Process custom dependencies"
+            ],
+            "fileMatch": [
+                "(^|/).github/workflows/.+\\.ya?ml(?:\\.j2)?$"
+            ],
+            "matchStrings": [
+                // # renovate: datasource=helm depName=cilium repository=https://helm.cilium.io
+                // version: 1.15.1
+                "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)",
+                // # renovate: datasource=github-releases depName=rancher/system-upgrade-controller
+                // https://github.com/rancher/system-upgrade-controller/releases/download/v0.13.2/crd.yaml
+                "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)"
+            ],
+            "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+        }
     ]
 }
