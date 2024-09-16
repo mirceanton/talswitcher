@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: Git Release
+name: Release
 
 on:
   workflow_dispatch:
@@ -28,8 +28,17 @@ on:
       - "main.go"
 
 jobs:
-  release:
-    uses: mirceanton/reusable-workflows/.github/workflows/git-release-semver.yaml@17d8ef4df857d93b905170956fbbcd56b296e8bb
+  git:
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-release-semver.yaml@3.4.2
     secrets: inherit
     with:
+      dry-run: ${{ inputs.dry-run || github.event_name == 'pull_request' }}
+
+  goreleaser:
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-go-release.yaml@3.4.2
+    needs: [git]
+    secrets: inherit
+    with:
+      go-version: "1.22.5"
+      goreleaser-version: "v2.2.0"
       dry-run: ${{ inputs.dry-run || github.event_name == 'pull_request' }}
