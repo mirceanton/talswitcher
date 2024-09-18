@@ -15,23 +15,23 @@ jobs:
     secrets: inherit
 
   yamllint:
-    uses: ./.github/workflows/reusable-yamllint.yaml
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-yamllint.yaml@v3.4.3
     secrets: inherit
     with:
       yamllint-args: "--config-file=.yamllint.yaml"
 
   actionlint:
-    uses: ./.github/workflows/reusable-actionlint.yaml
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-actionlint.yaml@v3.4.3
     secrets: inherit
 
   shellcheck:
-    uses: ./.github/workflows/reusable-shellcheck.yaml
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-shellcheck.yaml@v3.4.3
     secrets: inherit
 
   markdownlint:
-    uses: ./.github/workflows/reusable-markdownlint.yaml
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-markdownlint.yaml@v3.4.3
     secrets: inherit
 
   commitlint:
-    uses: ./.github/workflows/reusable-commitlint.yaml
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-commitlint.yaml@v3.4.3
     secrets: inherit
