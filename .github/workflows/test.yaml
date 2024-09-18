@@ -16,6 +16,7 @@ on:
 
 env:
   TALOSCONFIG_DIR: ./configs/
+  TALSWITCHER_LOG_LEVEL: debug
 
 jobs:
   test:
