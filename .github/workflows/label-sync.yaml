@@ -3,27 +3,31 @@
 name: Label Sync
 
 on:
+  # Manual Trigger
   workflow_dispatch:
     inputs:
       dry-run:
-        description: "Run the action without making changes"
+        description: Dry Run
         default: true
         required: false
         type: boolean
 
+  # Dry Run on any PR that changes the labels config or the workflow
   pull_request:
     paths:
-      - ".github/workflows/label-sync.yaml"
-      - ".github/labels.yaml"
+      - .github/workflows/label-sync.yaml
+      - .github/labels.yaml
 
+  # "Wet" Run on any push to the main branch that changes the labels config or the workflow
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
     paths:
-      - ".github/workflows/label-sync.yaml"
-      - ".github/labels.yaml"
+      - .github/workflows/label-sync.yaml
+      - .github/labels.yaml
 
+  # "Wet" Run daily hourly
   schedule:
-    - cron: "0 0 * * *" # Every day at midnight
+    - cron: "0 * * * *"
 
 jobs:
   label-sync:
@@ -31,4 +35,4 @@ jobs:
     secrets: inherit
     with:
       dry-run: ${{ inputs.dry-run || github.event_name == 'pull_request' }}
-      config-file: ".github/labels.yaml"
+      config-file: .github/labels.yaml

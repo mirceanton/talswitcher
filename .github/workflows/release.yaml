@@ -3,29 +3,30 @@
 name: Release
 
 on:
+  # Manual Trigger
   workflow_dispatch:
     inputs:
       dry-run:
-        description: "Dry run"
+        description: Dry Run
         required: false
         default: false
         type: boolean
 
+  # Dry Run on any PR that changes this pipeline or that should ultimately trigger a release when merged
   pull_request:
     paths:
-      - ".github/workflows/git-release.yaml"
-      - "cmd/**"
+      - ".github/workflows/release.yaml"
       - "go.mod"
       - "go.sum"
-      - "main.go"
+      - "**/**.go"
 
+  # "Wet" Run on any push to the main branch that modified a go-related file
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
     paths:
-      - "cmd/**"
       - "go.mod"
       - "go.sum"
-      - "main.go"
+      - "**/**.go"
 
 jobs:
   git:
@@ -39,6 +40,4 @@ jobs:
     needs: [git]
     secrets: inherit
     with:
-      go-version: "1.22.5"
-      goreleaser-version: "v2.2.0"
       dry-run: ${{ inputs.dry-run || github.event_name == 'pull_request' }}

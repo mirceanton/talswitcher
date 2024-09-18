@@ -1,25 +1,18 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: Go Lint
+name: Lint
 
 on:
+  # Manual Trigger
   workflow_dispatch: {}
 
-  pull_request:
-    paths:
-      - ".github/workflows/go-lint.yaml"
-      - ".golangci.yaml"
-      - "go.mod"
-      - "go.sum"
-      - "cmd/**"
+  # Run on any PR
+  pull_request: {}
 
 jobs:
   golangci-lint:
     uses: mirceanton/reusable-workflows/.github/workflows/reusable-go-lint.yaml@3.4.2
     secrets: inherit
-    with:
-      go-version: "1.22.5"
-      golangci-version: "v1.60.3"
 
   yamllint:
     uses: ./.github/workflows/reusable-yamllint.yaml
@@ -30,8 +23,6 @@ jobs:
   actionlint:
     uses: ./.github/workflows/reusable-actionlint.yaml
     secrets: inherit
-    with:
-      actionlint-version: "v1.7.1"
 
   shellcheck:
     uses: ./.github/workflows/reusable-shellcheck.yaml
@@ -40,11 +31,7 @@ jobs:
   markdownlint:
     uses: ./.github/workflows/reusable-markdownlint.yaml
     secrets: inherit
-    with:
-      markdownlint-cli-version: "0.41.0"
 
   commitlint:
     uses: ./.github/workflows/reusable-commitlint.yaml
     secrets: inherit
-    with:
-      commitlint-version: "v19.5.0"

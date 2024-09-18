@@ -10,4 +10,4 @@ jobs:
     uses: mirceanton/reusable-workflows/.github/workflows/reusable-labeler.yaml@3.4.2
     secrets: inherit
     with:
-      config-file: ".github/labeler.yaml"
+      config-file: .github/labeler.yaml

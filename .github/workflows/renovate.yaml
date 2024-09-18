@@ -3,24 +3,29 @@
 name: Renovate
 
 on:
+  # Manual Trigger
   workflow_dispatch:
     inputs:
       dry-run:
         description: Dry Run
-        default: "false"
+        default: false
         required: false
+        type: boolean
       log-level:
         description: Log Level
         default: debug
         required: false
+        type: string
 
+  # Dry Run on any PR that changes the renovate config or the renovate workflow
   pull_request:
     paths:
-      - ".github/workflows/renovate.yaml"
-      - "renovate.json5"
+      - .github/workflows/renovate.yaml
+      - renovate.json5
 
+  # "Wet" Run hourly
   schedule:
-    - cron: "0 * * * *" # hourly
+    - cron: "0 * * * *"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
