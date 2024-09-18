@@ -28,26 +28,26 @@ jobs:
       - name: Build `talswitcher`
         run: go build -o talswitcher
 
-      - name: Download `talosctl`
-        run: wget https://github.com/siderolabs/talos/releases/download/v1.7.6/talosctl-linux-amd64 -O talosctl && chmod +x talosctl
+      - name: Install `talosctl`
+        run: curl -sL https://talos.dev/install | sh && talosctl version
 
       - name: Set Up Talos Clusters
         run: |
-          ./talosctl cluster create --name=test-cluster-1 --talosconfig=./configs/talos1.yaml --cidr=10.5.0.0/24 &
-          ./talosctl cluster create --name=test-cluster-2 --talosconfig=./configs/talos2.yaml --cidr=10.6.0.0/24 &
+          talosctl cluster create --name=test-cluster-1 --talosconfig=./configs/talos1.yaml --cidr=10.5.0.0/24 &
+          talosctl cluster create --name=test-cluster-2 --talosconfig=./configs/talos2.yaml --cidr=10.6.0.0/24 &
           wait
 
       - name: Run talswitcher - switch to cluster 1
         run: ./talswitcher test-cluster-1
 
       - name: List Talos Members
-        run: ./talosctl get members -n test-cluster-1-controlplane-1
+        run: talosctl get members -n test-cluster-1-controlplane-1
 
       - name: Run talswitcher - switch to cluster 2
         run: ./talswitcher test-cluster-2
 
       - name: List Talos Members
-        run: ./talosctl get members -n test-cluster-2-controlplane-1
+        run: talosctl get members -n test-cluster-2-controlplane-1
 
       - name: Try to List Members of Cluster 1
-        run: ./talosctl get members -n test-cluster-1-controlplane-1 && exit 1 || echo "This was supposed to fail!"
+        run: talosctl get members -n test-cluster-1-controlplane-1 && exit 1 || echo "This was supposed to fail!"
