@@ -29,7 +29,7 @@ jobs:
         run: go build -o talswitcher
 
       - name: Install `talosctl`
-        run: curl -sL https://talos.dev/install | sh && talosctl version
+        run: curl -sL https://talos.dev/install | sh
 
       - name: Set Up Talos Clusters
         run: |
