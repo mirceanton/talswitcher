@@ -1,0 +1,43 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Test E2E
+
+on:
+  # Manual Trigger
+  workflow_dispatch: {}
+
+  # Run on any PR that changes this pipeline or that should ultimately trigger a release when merged
+  pull_request:
+    paths:
+      - ".github/workflows/test.yaml"
+      - "go.mod"
+      - "go.sum"
+      - "**/**.go"
+
+env:
+  TALOSCONFIG_DIR: ./configs/
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Set up Talos Cluster 1
+        run: talosctl cluster create --name=talswitcher-1 --talosconfig=./configs/talos1.yaml --cidr=10.5.0.0/24
+
+      - name: Set up Talos Cluster 2
+        run: talosctl cluster create --name=talswitcher-2 --talosconfig=./configs/talos2.yaml --cidr=10.6.0.0/24
+
+      - name: Run talswitcher - switch to cluster 1
+        run: go run . talswitcher-1
+
+      - name: List Talos Members
+        run: talosctl get members -n talswitcher-1-controlplane-1
+
+      - name: Run talswitcher - switch to cluster 2
+        run: go run . talswitcher-2
+
+      - name: List Talos Members
+        run: talosctl get members -n talswitcher-2-controlplane-1
