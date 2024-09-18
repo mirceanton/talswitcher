@@ -1,0 +1,64 @@
+{
+  "branches": [
+    "master",
+    "main"
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github"
+  ],
+  "preset": "angular",
+  "releaseRules": [
+    // MAJOR bump
+    {
+      "type": "feat",
+      "breaking": true,
+      "release": "major"
+    },
+    {
+      "type": "fix",
+      "breaking": true,
+      "release": "major"
+    },
+    {
+      "type": "patch",
+      "breaking": true,
+      "release": "major"
+    },
+    // MINOR bump
+    {
+      "type": "feat",
+      "release": "minor"
+    },
+    // PATCH bump
+    {
+      "type": "fix",
+      "release": "patch"
+    },
+    {
+      "type": "patch",
+      "release": "patch"
+    },
+    // IGNORED
+    {
+      "type": "chore",
+      "release": false
+    },
+    {
+      "type": "ci",
+      "release": false
+    },
+    {
+      "type": "style",
+      "release": false
+    }
+  ],
+  "parserOpts": {
+    "noteKeywords": [
+      "BREAKING",
+      "BREAKING CHANGE",
+      "BREAKING CHANGES"
+    ]
+  }
+}
