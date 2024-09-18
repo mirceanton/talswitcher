@@ -25,26 +25,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Test setup
-        run: |
-          # Download talosctl
-          wget https://github.com/siderolabs/talos/releases/download/v1.7.6/talosctl-linux-amd64 -O talosctl && chmod +x talosctl
+      - name: Build `talswitcher`
+        run: go build -o talswitcher
 
-          # Set up clusters
+      - name: Download `talosctl`
+        run: wget https://github.com/siderolabs/talos/releases/download/v1.7.6/talosctl-linux-amd64 -O talosctl && chmod +x talosctl
+
+      - name: Set Up Talos Clusters
+        run: |
           ./talosctl cluster create --name=talswitcher-1 --talosconfig=./configs/talos1.yaml --cidr=10.5.0.0/24 &
           ./talosctl cluster create --name=talswitcher-2 --talosconfig=./configs/talos2.yaml --cidr=10.6.0.0/24 &
-
-          # Wait for cluster setup
           wait
 
       - name: Run talswitcher - switch to cluster 1
-        run: go run . talswitcher-1
+        run: ./talswitcher talswitcher-1
 
       - name: List Talos Members
         run: ./talosctl get members -n talswitcher-1-controlplane-1
 
       - name: Run talswitcher - switch to cluster 2
-        run: go run . talswitcher-2
+        run: ./talswitcher talswitcher-2
 
       - name: List Talos Members
         run: ./talosctl get members -n talswitcher-2-controlplane-1
