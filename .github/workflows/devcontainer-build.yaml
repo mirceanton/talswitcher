@@ -12,7 +12,7 @@ on:
 
 jobs:
   release:
-    uses: mirceanton/reusable-workflows/.github/workflows/reusable-docker-build-push.yaml@3.4.2
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-docker-build-push.yaml@v3.4.3
     secrets: inherit
     with:
       image: "ghcr.io/mirceanton/talhelper-devcontainer"
