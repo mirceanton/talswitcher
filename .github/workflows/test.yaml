@@ -33,18 +33,21 @@ jobs:
 
       - name: Set Up Talos Clusters
         run: |
-          ./talosctl cluster create --name=talswitcher-1 --talosconfig=./configs/talos1.yaml --cidr=10.5.0.0/24 &
-          ./talosctl cluster create --name=talswitcher-2 --talosconfig=./configs/talos2.yaml --cidr=10.6.0.0/24 &
+          ./talosctl cluster create --name=test-cluster-1 --talosconfig=./configs/talos1.yaml --cidr=10.5.0.0/24 &
+          ./talosctl cluster create --name=test-cluster-2 --talosconfig=./configs/talos2.yaml --cidr=10.6.0.0/24 &
           wait
 
       - name: Run talswitcher - switch to cluster 1
-        run: ./talswitcher talswitcher-1
+        run: ./talswitcher test-cluster-1
 
       - name: List Talos Members
-        run: ./talosctl get members -n talswitcher-1-controlplane-1
+        run: ./talosctl get members -n test-cluster-1-controlplane-1
 
       - name: Run talswitcher - switch to cluster 2
-        run: ./talswitcher talswitcher-2
+        run: ./talswitcher test-cluster-2
 
       - name: List Talos Members
-        run: ./talosctl get members -n talswitcher-2-controlplane-1
+        run: ./talosctl get members -n test-cluster-2-controlplane-1
+
+      - name: Try to List Members of Cluster 1
+        run: ./talosctl get members -n test-cluster-1-controlplane-1 && exit 1 || echo "This was supposed to fail!"
