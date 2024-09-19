@@ -42,4 +42,4 @@ jobs:
     with:
       dry-run: ${{ inputs.dry-run || github.event_name == 'pull_request' }}
       go-version: "1.22.3" # renovate: depName=golang datasource=docker
-      goreleaser-version: "v2.3.0" # renovate: depName=goreleaser/goreleaser datasource=docker
+      goreleaser-version: "v2.3.2" # renovate: depName=goreleaser/goreleaser datasource=docker
