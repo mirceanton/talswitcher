@@ -31,7 +31,7 @@ RUN kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl.bash > /de
 COPY --from=talosctl /talosctl /usr/local/bin/talosctl
 RUN talosctl completion bash | sudo tee /etc/bash_completion.d/talosctl.bash > /dev/null
 
-COPY --from=talhelper /usr/local/bin/talhelper /usr/local/bin/talhelper
+COPY --from=talhelper /bin/talhelper /usr/local/bin/talhelper
 RUN talhelper completion bash | sudo tee /etc/bash_completion.d/talhelper.bash > /dev/null
 
 COPY --from=golangci-lint /usr/bin/golangci-lint /usr/local/bin/golangci-lint
