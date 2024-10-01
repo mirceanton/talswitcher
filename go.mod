@@ -2,8 +2,6 @@ module github.com/mirceanton/talswitcher
 
 go 1.23.0
 
-toolchain go1.23.2
-
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
 	github.com/siderolabs/talos/pkg/machinery v1.8.0
