@@ -25,7 +25,7 @@ on:
       - .github/workflows/label-sync.yaml
       - .github/labels.yaml
 
-  # "Wet" Run daily hourly
+  # "Wet" Run hourly
   schedule:
     - cron: "0 * * * *"
 

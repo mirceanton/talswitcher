@@ -15,7 +15,7 @@ jobs:
     uses: mirceanton/reusable-workflows/.github/workflows/reusable-docker-build-push.yaml@2dc165dbaca3733e48c4951e080807c372b64fd8 # v3.4.11
     secrets: inherit
     with:
-      image: "ghcr.io/mirceanton/talswitcher-devcontainer"
+      image: "ghcr.io/${{ github.repository }}-devcontainer"
       platforms: linux/amd64
       tags: test
       context: ./.devcontainer

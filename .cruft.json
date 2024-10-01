@@ -1,0 +1,19 @@
+{
+  "template": "https://github.com/mirceanton/repository-templates",
+  "commit": "17fe5d3a477f09ed2e604098f2ae6e6be32eb340",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "talswitcher",
+      "repo_name": "talswitcher",
+      "project_description": "A simple tool to help manage multiple talosconfig files.",
+      "author": "Mircea-Pavel Anton",
+      "go_version": "1.23.0",
+      "_copy_without_render": [
+        ".github/*"
+      ],
+      "_template": "https://github.com/mirceanton/repository-templates"
+    }
+  },
+  "directory": "golang"
+}
