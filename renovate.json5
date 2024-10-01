@@ -1,0 +1,25 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+    "extends": [
+        ":dependencyDashboard",
+        "config:best-practices",
+        ":disableRateLimiting",
+        ":semanticCommits",
+        "github>mirceanton/renovate-config//labels/all.json5",
+        "github>mirceanton/renovate-config//semantic-commits/all.json5",
+        "github>mirceanton/renovate-config//custom-managers/regex-yaml.json5"
+    ],
+    "ignorePaths": [
+        // Ignore files managed by cruft. Renovate will update them upstream and cruft will sync them here.
+        ".github/workflows/cruft-sync.yaml",
+        ".github/workflows/devcontainer-build.yaml",
+        ".github/workflows/git-release.yaml",
+        ".github/workflows/goreleaser.yaml",
+        ".github/workflows/label-sync.yaml",
+        ".github/workflows/labeler.yaml",
+        ".github/workflows/lint.yaml",
+        ".github/workflows/renovate.yaml",
+        ".github/workflows/test-go.yaml"
+  ]
+}

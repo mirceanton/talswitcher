@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Test Go
+
+on:
+  # Manual Trigger
+  workflow_dispatch: {}
+
+  # Run on any PR
+  pull_request: {}
+
+jobs:
+  test:
+    uses: mirceanton/reusable-workflows/.github/workflows/reusable-go-test.yaml@b15f79125a97349d2f1043d1556d6e3cebae2227 # v3.4.5
+    secrets: inherit
+    with:
+      go-version: stable

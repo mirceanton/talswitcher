@@ -1,0 +1,106 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Cruft Sync
+
+on:
+  # Manual Trigger
+  workflow_dispatch: {}
+
+  # "Wet" Run hourly
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v5.2.0
+        with:
+          python-version: "3.12"
+
+      - name: Install Cruft
+        run: pip3 install cruft
+
+      - name: Generate Token
+        uses: actions/create-github-app-token@5d869da34e18e7287c1daad50e0b8ea0f506ce69 # v1.11.0
+        id: app-token
+        with:
+          app-id: "${{ secrets.BOT_APP_ID }}"
+          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          fetch-depth: 0
+          token: "${{ steps.app-token.outputs.token }}"
+
+      - name: Check if the `cruft_update` branch already exists
+        id: check-branch
+        run: |
+          if git ls-remote --exit-code --heads origin cruft_update; then
+            echo "branch_exists=true" | tee "$GITHUB_OUTPUT"
+          else
+            echo "branch_exists=false" | tee "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create the `cruft_update` branch
+        if: steps.check-branch.outputs.branch_exists == 'false'
+        run: git branch cruft_update
+
+      - name: Switch to the `cruft_update` branch
+        run: git switch cruft_update
+
+      - name: Check if a cruft update is available
+        id: check-cruft
+        run: |
+          if ! cruft check; then
+            echo "has_changes=true" | tee "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" | tee "$GITHUB_OUTPUT"
+          fi
+
+      - name: Apply cruft update
+        if: steps.check-cruft.outputs.has_changes == 'true'
+        run: |
+          cruft update --skip-apply-ask --refresh-private-variables
+          git restore --staged .
+
+      - name: Configure Git User
+        if: steps.check-cruft.outputs.has_changes == 'true'
+        run: |
+          git config --global user.email "mr.borboto@noreply.mirceanton.com"
+          git config --global user.name "Mr. Borboto"
+
+      - name: Commit and push changes
+        if: steps.check-cruft.outputs.has_changes == 'true'
+        run: |
+          git add -A
+          git commit -m "chore(cruft): apply template updates"
+          git push --set-upstream origin cruft_update
+
+      - name: Check if a pull request already exists
+        id: check-pr
+        env:
+          GH_TOKEN: "${{ steps.app-token.outputs.token }}"
+        run: |
+          PR_EXISTS=$(gh pr list --head cruft_update --json number | jq '. | length > 0')
+          echo "pr_exists=$PR_EXISTS" | tee "$GITHUB_OUTPUT"
+
+      - name: Compare the current branch with the main branch
+        id: check-changes
+        run: |
+          if git diff --quiet origin/main; then
+            echo "has_changes=false" | tee "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" | tee "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request
+        if: steps.check-pr.outputs.pr_exists == 'false' && steps.check-changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: "${{ steps.app-token.outputs.token }}"
+        run: |
+          gh pr create \
+            --title "chore(cruft): Apply updates from template" \
+            --body "This PR adds the changes from the upstream template."
