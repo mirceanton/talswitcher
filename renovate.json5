@@ -8,7 +8,8 @@
         ":semanticCommits",
         "github>mirceanton/renovate-config//labels/all.json5",
         "github>mirceanton/renovate-config//semantic-commits/all.json5",
-        "github>mirceanton/renovate-config//custom-managers/regex-yaml.json5"
+        "github>mirceanton/renovate-config//custom-managers/regex-yaml.json5",
+        "github>mirceanton/renovate-config//auto-merge/AUTOPILOT.json5" //! RENOVATE AUTOPILOT ENABLED
     ],
     "ignorePaths": [
         // Ignore files managed by cruft. Renovate will update them upstream and cruft will sync them here.
@@ -21,5 +22,5 @@
         ".github/workflows/lint.yaml",
         ".github/workflows/renovate.yaml",
         ".github/workflows/test-go.yaml"
-  ]
+    ]
 }
