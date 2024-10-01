@@ -58,6 +58,20 @@ Precompiled binaries are available for various platforms. You can download the l
 docker pull ghcr.io/mirceanton/talswitcher
 ```
 
+### Install via homebrew
+
+1. Add the tap
+
+    ```bash
+    brew tap mirceanton/taps
+    ```
+
+2. Install `talswitcher`
+
+    ```bash
+    brew install talswitcher
+    ```
+
 ## Usage
 
 `talswitcher` can be used both interactively and non-interactively.
