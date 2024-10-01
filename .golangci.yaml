@@ -1,7 +1,0 @@
----
-# yaml-language-server: $schema=https://golangci-lint.run/jsonschema/golangci.jsonschema.json
-linters:
-  enable:
-    - goimports
-    - gofmt
-    - gofumpt
