@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/mirceanton/repository-templates",
-  "commit": "fc3d515add2db2db0c8e3d272bb4810840f8358c",
+  "commit": "e17df150bd5949c2b8f881b517c3c2de769c2a1f",
   "checkout": null,
   "context": {
     "cookiecutter": {

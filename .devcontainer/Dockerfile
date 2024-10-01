@@ -17,7 +17,7 @@ FROM goreleaser/goreleaser:${GORELEASER_VERSION} AS goreleaser
 ## ================================================================================================
 ## Main image
 ## ================================================================================================
-FROM mcr.microsoft.com/devcontainers/go:1.23-bookworm@sha256:089dc0f3ae6e3a07b0896c28c0bde042fbb1e31fe87908ca55f32e37f56ff0c6 AS workspace
+FROM mcr.microsoft.com/devcontainers/go:1.23-bookworm@sha256:16c623ad4c8b5f2e45e51ba0d26229306be00bffe51826c3d9acde94188086f1 AS workspace
 
 # Install additional tools
 COPY --from=taskfile /task /usr/local/bin/task
