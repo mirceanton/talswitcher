@@ -50,6 +50,20 @@ nfpms:
     license: MIT
     formats: [deb, apk, rpm]
 
+brews:
+  - name: talswitcher
+    description: A simple tool to help manage multiple talosconfig files.
+    license: MIT
+    homepage: https://github.com/mirceanton/{{.ProjectName}}
+    directory: Formula
+    repository:
+      owner: mirceanton
+      name: homebrew-taps
+    test: system "#{bin}/talswitcher", "--help"
+    commit_author:
+      name: mr-borboto[bot]
+      email: 170036086+mr-borboto[bot]@users.noreply.github.com
+
 dockers:
   - image_templates:
       - "ghcr.io/mirceanton/{{.ProjectName}}:v{{.Version}}-amd64"
