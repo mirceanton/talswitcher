@@ -1,7 +1,7 @@
 {
   "template": "https://github.com/mirceanton/repository-templates",
-  "commit": "8e8f415119f9f953b73a77371235e8b29c801b57",
-  "checkout": null,
+  "commit": "4c527dc8a98a5772df49700bc82262dd6fbff928",
+  "checkout": "v0.1.1",
   "context": {
     "cookiecutter": {
       "project_name": "talswitcher",
