@@ -1,0 +1,22 @@
+diff a/renovate.json5 b/renovate.json5	(rejected hunks)
+@@ -8,10 +8,10 @@
+         ":semanticCommits",
+         "github>mirceanton/renovate-config//labels/all.json5",
+         "github>mirceanton/renovate-config//semantic-commits/all.json5",
+-        "github>mirceanton/renovate-config//custom-managers/regex-yaml.json5"
++        "github>mirceanton/renovate-config//auto-merge/AUTOPILOT.json5" //! RENOVATE AUTOPILOT ENABLED
+     ],
+     "ignorePaths": [
+-        // Ignore files managed by cruft. Renovate will update them upstream and cruft will sync them here.
++        //? Ignore files managed by cruft. Renovate will update them upstream and cruft will sync them here.
+         ".github/workflows/cruft-sync.yaml",
+         ".github/workflows/devcontainer-build.yaml",
+         ".github/workflows/git-release.yaml",
+@@ -21,5 +21,5 @@
+         ".github/workflows/lint.yaml",
+         ".github/workflows/renovate.yaml",
+         ".github/workflows/test-go.yaml"
+-  ]
++    ]
+ }
+\ No newline at end of file
