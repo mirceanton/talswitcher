@@ -59,6 +59,7 @@ brews:
     repository:
       owner: mirceanton
       name: homebrew-taps
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     test: system "#{bin}/talswitcher", "--help"
     commit_author:
       name: mr-borboto[bot]
