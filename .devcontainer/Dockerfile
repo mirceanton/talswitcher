@@ -6,7 +6,7 @@ ARG GOLINT_VERSION=v1.61.0-alpine@sha256:61e2d68adc792393fcb600340fe5c28059638d8
 ARG GORELEASER_VERSION=v2.3.2@sha256:d62b4a18dfe3af7bd4da9e5954b496548ef04e73ae8f98cd75ba63a9ed4d73e5
 
 ARG KUBECTL_VERSION=1.31.2@sha256:45e7c7a9d120f93e9b66b689c63896ff87bb5b4d73b1203a0636d09e1219c879
-ARG TALOSCTL_VERSION=v1.8.1@sha256:aee38cf2eafda9815ce58f0eb261c14a1cbdc675af249c1a055d6c8089292bee
+ARG TALOSCTL_VERSION=v1.8.2@sha256:57e518bcdaa2d550babe4f006396aa2c9a769cdc95f2fb4292cf947f4ce65333
 
 
 ## ================================================================================================
