@@ -2,7 +2,7 @@
 # Utility versions
 ## ================================================================================================
 ARG TASKFILE_VERSION=v3.38.0@sha256:308c4f5be86bffae3f956cbd7225c4fec69b0e7a89012120b818a10df45d7c59
-ARG GOLINT_VERSION=v1.62.2-alpine@sha256:0f3af3929517ed4afa1f1bcba4eae827296017720e08ecd5c68b9f0640bc310d
+ARG GOLINT_VERSION=v1.63.0-alpine@sha256:20fff28cc8bbd95c59962084c05e79e867b2c7cc649201471063c7dff29ac5b1
 ARG GORELEASER_VERSION=v2.5.0@sha256:8a70dbaf65cef49cd3ae9b564395fe875fa8136a3d45908f84c6e35ff8925ec9
 
 ARG KUBECTL_VERSION=1.32.0@sha256:493d1b871556d48d6b25d471f192c2427571cd6f78523eebcaf4d263353c7487
