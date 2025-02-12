@@ -1,12 +1,37 @@
+# =================================================================================================
+# Envs
+# =================================================================================================
+[env]
+CGO_ENABLED=1
+
+
+# =================================================================================================
+# Tools
+# =================================================================================================
 [tools]
 go = "latest"
 "aqua:goreleaser/goreleaser" = "latest"
 "aqua:golangci/golangci-lint" = "latest"
-
-"aqua:derailed/k9s" = "latest"
 "aqua:kubernetes/kubectl" = "latest"
-
 "aqua:siderolabs/talos" = "latest"
+"aqua:derailed/k9s" = "latest"
 
-"aqua:go-task/task" = "latest"
-"aqua:cli/cli" = "latest"
+
+# =================================================================================================
+# Tasks
+# =================================================================================================
+[tasks.release]
+description = "Run goreleaser in snapshot mode."
+run = "goreleaser release --snapshot --clean"
+
+[tasks.build]
+description = "Build the binary."
+run = "go build -o ./talswitcher ."
+
+[tasks.test]
+description = "Run tests."
+run = "go test -v ./... -race -covermode=atomic"
+
+[tasks.lint]
+description = "Run linter."
+run = "golangci-lint run --fix"
