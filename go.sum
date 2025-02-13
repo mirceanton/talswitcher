@@ -47,6 +47,8 @@ github.com/siderolabs/crypto v0.5.0 h1:+Sox0aYLCcD0PAH2cbEcx557zUrONLtuj1Ws+2MFX
 github.com/siderolabs/crypto v0.5.0/go.mod h1:hsR3tJ3aaeuhCChsLF4dBd9vlJVPvmhg4vvx2ez4aD4=
 github.com/siderolabs/talos/pkg/machinery v1.9.3 h1:P3fb4UsmF3UEV2CDf100L7fVW+CBL5Yk6sEDis7uZr4=
 github.com/siderolabs/talos/pkg/machinery v1.9.3/go.mod h1:G4swVKn4vK3455ssgcPUrikPTypx6n+uaqv7GyBWXy4=
+github.com/siderolabs/talos/pkg/machinery v1.9.4 h1:ReKkU5gaf5h/cZde3ME45hREgOEWODTJYfBFeMhZGkA=
+github.com/siderolabs/talos/pkg/machinery v1.9.4/go.mod h1:yLkJ5ZvIpshDRhUVWjuSyTN6YAQiusSJF4/zj2/XfpY=
 github.com/sirupsen/logrus v1.9.3 h1:dueUQJ1C2q9oE3F7wvmSGAaVtTmUizReu6fjN8uqzbQ=
 github.com/sirupsen/logrus v1.9.3/go.mod h1:naHLuLoDiP4jHNo9R0sCBMtWGeIprob74mVsIT4qYEQ=
 github.com/spf13/cobra v1.8.1 h1:e5/vxKd/rZsfSJMUX1agtjeTDf+qv1/JdBF8gg5k9ZM=
