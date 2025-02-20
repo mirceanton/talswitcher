@@ -9,11 +9,12 @@ CGO_ENABLED=1
 # Tools
 # =================================================================================================
 [tools]
-go = "latest"
-"aqua:goreleaser/goreleaser" = "latest"
-"aqua:golangci/golangci-lint" = "latest"
+go = "1.24.0"
+"aqua:goreleaser/goreleaser" = "2.7.0"
+"aqua:golangci/golangci-lint" = "1.64.3"
+"aqua:siderolabs/talos" = "1.9.4"
+
 "aqua:kubernetes/kubectl" = "latest"
-"aqua:siderolabs/talos" = "latest"
 "aqua:derailed/k9s" = "latest"
 
 
@@ -30,7 +31,7 @@ run = "go build -o ./talswitcher ."
 
 [tasks.test]
 description = "Run tests."
-run = "go test -v ./... -race -covermode=atomic"
+run = "bash scripts/test.sh"
 
 [tasks.lint]
 description = "Run linter."
