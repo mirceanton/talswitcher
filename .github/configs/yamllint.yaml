@@ -20,5 +20,4 @@ rules:
   # Ignore truthy for github workflows due to dummy trigger on the
   # 'on:' clause
   truthy:
-    ignore:
-      - .github/workflows
+    ignore: [".github/workflows"]
