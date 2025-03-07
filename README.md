@@ -5,8 +5,10 @@
 ## Features
 
 - **Non-Interactive Mode**: Specify the desired context directly as an argument.
+- **Interactive Mode**: Run the program with no arguments to get an interactive list of available contexts.
 - **Automatic Configuration Update**: Copies the selected context's talosconfig to the appropriate location for Talos.
 - **Duplicate Context Detection**: Ensures there are no duplicate context names across multiple talosconfig files.
+- **Shell Completions**: Provides tab completion for available context names in compatible shells.
 
 ## Installation
 
@@ -60,39 +62,46 @@ docker pull ghcr.io/mirceanton/talswitcher
 
 2. Build the tool:
 
-    If you have [Taskfile](https://taskfile.dev/) installed, run:
-
     ```bash
-    task build
-    ```
-
-    Otherwise, simply run the `go build` command:
-
-    ```bash
-    go build -o talswitcher
+    mise run build
     ```
 
 ## Usage
 
-`talswitcher` can be used both interactively and non-interactively.
+`talswitcher` has two main subcommands:
 
-### Interactive Mode
+### Switch Subcommand
 
-If no context name is provided, `talswitcher` will list all available contexts and prompt you to choose one:
-
-```bash
-talswitcher --talosconfig-dir /path/to/talosconfigs
-```
-
-### Non-Interactive Mode
-
-You can also specify a context name directly:
+The `switch` (or `sw`/`s`) subcommand is used to switch between Talos contexts:
 
 ```bash
-talswitcher my-context --talosconfig-dir /path/to/talosconfigs
+# Interactive mode
+talswitcher switch
+
+# Switch to a specific context
+talswitcher switch my-context
+
+# Switch to previous context
+talswitcher switch -
 ```
 
-This will switch to `my-context` immediately.
+### Shell Completions
+
+The `completion` subcommand generates shell completion scripts:
+
+```bash
+# Generate completions for bash
+talswitcher completion bash > /etc/bash_completion.d/talswitcher
+
+# Generate completions for zsh
+talswitcher completion zsh > ~/.zsh/completion/_talswitcher
+
+# Generate completions for fish
+talswitcher completion fish > ~/.config/fish/completions/talswitcher.fish
+
+# Generate completions for powershell
+talswitcher completion powershell > ~/talswitcher.ps1
+```
 
 ## Configuration
 
