@@ -1,5 +1,5 @@
 talswitcher
 dist/
 configs/
-config
-config.old
+.config
+.config.old

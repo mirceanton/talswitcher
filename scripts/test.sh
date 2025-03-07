@@ -3,7 +3,7 @@ set -e
 
 # Create config directory if it doesn't exist
 export TALOSCONFIG_DIR="./configs/"
-export TALOSCONFIG="./config"
+export TALOSCONFIG="./.config"
 export TALSWITCHER_LOG_LEVEL="debug"
 mkdir -p $TALOSCONFIG_DIR
 
