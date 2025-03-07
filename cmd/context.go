@@ -11,7 +11,7 @@ import (
 
 var contextCmd = &cobra.Command{
 	Use:     "context [context name]",
-	Aliases: []string{"sw", "s"},
+	Aliases: []string{"ctx"},
 	Short:   "Switch to a specified Talos context",
 	Long:    `Switch to a specified Talos context or select one interactively.`,
 	Args:    cobra.MaximumNArgs(1),
