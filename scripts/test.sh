@@ -28,19 +28,28 @@ setup() {
     echo "Performing setup..."
 
     # Build talswitcher
+    echo "========================================================================================="
     echo "Building talswitcher..."
+    echo "========================================================================================="
     go build -o talswitcher
 
     # Set up Kubernetes clusters
+    echo "========================================================================================="
+    echo "Setting up Talos clusters..."
+    echo "========================================================================================="
     talosctl cluster create --name=test-cluster-1 --talosconfig=./configs/talos1.yaml --cidr=10.5.0.0/24 &
     talosctl cluster create --name=test-cluster-2 --talosconfig=./configs/talos2.yaml --cidr=10.6.0.0/24 &
     wait
 
+    echo "========================================================================================="
     echo "Setup completed."
+    echo "========================================================================================="
 }
 
 run_tests() {
+    echo "========================================================================================="
     echo "Running tests..."
+    echo "========================================================================================="
 
     # Test cluster switching
     echo "Switching context to test-cluster-1..."
@@ -58,7 +67,9 @@ run_tests() {
     echo "Attempting to list members of test-cluster-1..."
     talosctl get members -n test-cluster-1-controlplane-1 && exit 1 || echo "This was supposed to fail! We're good."
 
+    echo "========================================================================================="
     echo "Tests completed successfully!"
+    echo "========================================================================================="
 }
 
 # Set up trap to ensure cleanup happens on exit
