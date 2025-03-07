@@ -52,13 +52,13 @@ run_tests() {
     echo "========================================================================================="
 
     echo "====> Switching to test-cluster-1..."
-    ./talswitcher switch test-cluster-1
+    ./talswitcher context test-cluster-1
 
     echo "====> Validating cluster switch to test-cluster-1..."
     talosctl get members -n test-cluster-1-controlplane-1
 
     echo "====> Switching to test-cluster-2..."
-    ./talswitcher sw test-cluster-2
+    ./talswitcher ctx test-cluster-2
 
     echo "====> Validating cluster switch to test-cluster-2..."
     talosctl get members -n test-cluster-2-controlplane-1
@@ -67,7 +67,7 @@ run_tests() {
     talosctl get members -n test-cluster-1-controlplane-1 && exit 1 || echo "This was supposed to fail! We're good."
 
     echo "====> Switch to previous context..."
-    ./talswitcher s -
+    ./talswitcher ctx -
 
     echo "====> Validating cluster switch to test-cluster-1..."
     talosctl get members -n test-cluster-1-controlplane-1

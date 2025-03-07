@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"os"
-	"strings"
 
 	"github.com/spf13/cobra"
 
@@ -17,24 +16,24 @@ var (
 	version   string // Version of the tool
 )
 
+const exampleString = `  # Switch to a specific context
+  talswitcher context my-context
+
+  # Switch to previous context
+  talswitcher ctx -
+
+  # Interactive mode (no argument)
+  talswitcher context
+
+  # Generate shell completions
+  talswitcher completion bash > ~/.bash_completion.d/talswitcher`
+
 var rootCmd = &cobra.Command{
 	Use:     "talswitcher",
 	Short:   "CLI tool to switch between Talos contexts",
 	Long:    `talswitcher is a CLI tool to switch between Talos contexts from multiple talosconfig files.`,
 	Version: version,
-	Example: strings.TrimSpace(`
-		# Switch to a specific context
-		talswitcher switch my-context
-		
-		# Switch to previous context
-		talswitcher switch -
-		
-		# Interactive mode (no argument)
-		talswitcher switch
-		
-		# Generate shell completions
-		talswitcher completion bash > ~/.bash_completion.d/talswitcher
-	`),
+	Example: exampleString,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		applog.Setup(types.Config{
 			LogLevel:  logLevel,

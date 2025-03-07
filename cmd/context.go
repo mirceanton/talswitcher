@@ -9,9 +9,9 @@ import (
 	"github.com/mirceanton/talswitcher/pkg/types"
 )
 
-var switchCmd = &cobra.Command{
-	Use:     "switch [context]",
-	Aliases: []string{"sw", "s"},
+var contextCmd = &cobra.Command{
+	Use:     "context [context name]",
+	Aliases: []string{"ctx"},
 	Short:   "Switch to a specified Talos context",
 	Long:    `Switch to a specified Talos context or select one interactively.`,
 	Args:    cobra.MaximumNArgs(1),
@@ -92,5 +92,5 @@ func safeLoadContexts(configDir string) (map[string]string, []string) {
 }
 
 func init() {
-	rootCmd.AddCommand(switchCmd)
+	rootCmd.AddCommand(contextCmd)
 }
