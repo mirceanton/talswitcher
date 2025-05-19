@@ -5,7 +5,7 @@ go = "1.24.2"
 "aqua:goreleaser/goreleaser" = "2.9.0"
 
 # Kubernetes tools
-"aqua:siderolabs/talos" = "1.10.1"
+"aqua:siderolabs/talos" = "1.10.2"
 "aqua:kubernetes/kubectl" = "latest"
 "aqua:derailed/k9s" = "latest"
 
