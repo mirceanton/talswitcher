@@ -2,3 +2,4 @@ talswitcher
 dist/
 .config
 .config.old
+.DS_Store
