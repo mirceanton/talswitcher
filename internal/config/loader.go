@@ -76,12 +76,6 @@ func LoadContexts(configDir string) (map[string]string, []string) {
 			continue
 		}
 
-		// Skip files that are not YAML
-		if filepath.Ext(file.Name()) != ".yaml" && filepath.Ext(file.Name()) != ".yml" {
-			log.Debugf("Skipping non-YAML file: %s", file.Name())
-			continue
-		}
-
 		// Parse the talosconfig file
 		path := filepath.Join(configDir, file.Name())
 		log.Debugf("Parsing yaml file: %s", path)
