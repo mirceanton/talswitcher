@@ -104,7 +104,7 @@ func LoadContexts(configDir string) (map[string]string, []string) {
 
 	// Check if any contexts were found
 	if len(contextMap) == 0 {
-		log.Fatal("No Talos contexts (YAML files) found in the provided directory: ", configDir)
+		log.Fatal("No Talos contexts found in the provided directory: ", configDir)
 	}
 	log.Debugf("Found %d unique contexts", len(contextMap))
 
