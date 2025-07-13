@@ -51,6 +51,16 @@ docker pull ghcr.io/mirceanton/talswitcher
     brew install talswitcher
     ```
 
+### Install via `go install` (Go 1.17+)
+
+```bash
+# Make sure $GOBIN is in your $PATH, or set it
+go env -w GOBIN=~/.local/bin/ && export PATH="$PATH:$GOBIN"
+
+# Install talswitcher
+go install github.com/mirceanton/talswitcher@main
+```
+
 ### Build from Source
 
 1. Clone the repository:
