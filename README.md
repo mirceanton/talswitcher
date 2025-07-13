@@ -111,7 +111,7 @@ You can configure `talswitcher` using environment variables or CLI flags. The fo
 | :----------------------: | :-----------------: | :-------------------------------------------------: | :---------------------------------------------------------: | :---------------: |
 | `TALSWITCHER_LOG_LEVEL`  |    `--log-level`    |        Controls the logging verbosity level.        | `panic`, `fatal`, `error`, `warn`, `info`, `debug`, `trace` |      `info`       |
 | `TALSWITCHER_LOG_FORMAT` |   `--log-format`    |           Controls the log output format.           |                       `json`, `text`                        |      `text`       |
-|    `TALOSCONFIG_DIR`     | `--talosconfig-dir` |    Directory containing your talosconfig (.yaml/.yml) files.     |                  Any valid directory path                   |       `N/A`       |
+|    `TALOSCONFIG_DIR`     | `--talosconfig-dir` |    Directory containing your talosconfig files.     |                  Any valid directory path                   |       `N/A`       |
 |      `TALOSCONFIG`       |        `N/A`        | Path where the selected talosconfig will be copied. |                     Any valid file path                     | `~/.talos/config` |
 
 When both the environment variable and CLI flag are set, the CLI flag takes precedence.
