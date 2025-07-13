@@ -70,19 +70,19 @@ docker pull ghcr.io/mirceanton/talswitcher
 
 `talswitcher` has two main subcommands:
 
-### Switch Subcommand
+### Context Subcommand
 
-The `switch` (or `sw`/`s`) subcommand is used to switch between Talos contexts:
+The `context` (or `ctx`) subcommand is used to switch between Talos contexts:
 
 ```bash
 # Interactive mode
-talswitcher switch
+talswitcher context
 
 # Switch to a specific context
-talswitcher switch my-context
+talswitcher context my-context
 
 # Switch to previous context
-talswitcher switch -
+talswitcher context -
 ```
 
 ### Shell Completions
