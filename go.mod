@@ -8,7 +8,7 @@ require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
 	github.com/siderolabs/talos/pkg/machinery v1.11.0
 	github.com/sirupsen/logrus v1.9.3
-	github.com/spf13/cobra v1.10.0
+	github.com/spf13/cobra v1.10.1
 )
 
 require (
@@ -23,7 +23,7 @@ require (
 	github.com/petermattis/goid v0.0.0-20240813172612-4fcff4a6cae7 // indirect
 	github.com/sasha-s/go-deadlock v0.3.5 // indirect
 	github.com/siderolabs/crypto v0.6.3 // indirect
-	github.com/spf13/pflag v1.0.8 // indirect
+	github.com/spf13/pflag v1.0.9 // indirect
 	golang.org/x/sys v0.33.0 // indirect
 	golang.org/x/term v0.18.0 // indirect
 	golang.org/x/text v0.25.0 // indirect
