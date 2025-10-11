@@ -24,7 +24,7 @@ var contextCmd = &cobra.Command{
 				if err := configManager.Restore(); err != nil {
 					log.Fatalf("Failed to switch to previous config: %v", err)
 				}
-				return nil
+				return
 			}
 			selectedContext = args[0]
 		} else {

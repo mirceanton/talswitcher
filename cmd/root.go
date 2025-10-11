@@ -4,7 +4,6 @@ import (
 	"os"
 
 	"github.com/mirceanton/talswitcher/internal/manager"
-	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
