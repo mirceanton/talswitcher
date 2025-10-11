@@ -20,6 +20,12 @@ var contextCmd = &cobra.Command{
 
 		var selectedContext string
 		if len(args) == 1 {
+			if args[0] == "-" {
+				if err := configManager.Restore(); err != nil {
+					log.Fatalf("Failed to switch to previous config: %v", err)
+				}
+				return nil
+			}
 			selectedContext = args[0]
 		} else {
 			prompt := &survey.Select{

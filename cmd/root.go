@@ -28,12 +28,6 @@ var rootCmd = &cobra.Command{
 		return nil
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if len(args) == 1 && args[0] == "-" {
-			if err := configManager.Restore(); err != nil {
-				log.Fatalf("Failed to switch to previous config: %v", err)
-			}
-			return nil
-		}
 		return cmd.Help()
 	},
 }
