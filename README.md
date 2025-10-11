@@ -51,13 +51,9 @@ docker pull ghcr.io/mirceanton/talswitcher
     brew install talswitcher
     ```
 
-### Install via `go install` (Go 1.17+)
+### Install via `go install`
 
 ```bash
-# Make sure $GOBIN is in your $PATH, or set it
-go env -w GOBIN=~/.local/bin/ && export PATH="$PATH:$GOBIN"
-
-# Install talswitcher
 go install github.com/mirceanton/talswitcher@main
 ```
 
@@ -73,7 +69,7 @@ go install github.com/mirceanton/talswitcher@main
 2. Build the tool:
 
     ```bash
-    mise run build
+    go build -o talswitcher
     ```
 
 ## Usage
@@ -119,8 +115,6 @@ You can configure `talswitcher` using environment variables or CLI flags. The fo
 
 |   Environment Variable   |      CLI Flag       |                     Description                     |                      Acceptable Values                      |   Default Value   |
 | :----------------------: | :-----------------: | :-------------------------------------------------: | :---------------------------------------------------------: | :---------------: |
-| `TALSWITCHER_LOG_LEVEL`  |    `--log-level`    |        Controls the logging verbosity level.        | `panic`, `fatal`, `error`, `warn`, `info`, `debug`, `trace` |      `info`       |
-| `TALSWITCHER_LOG_FORMAT` |   `--log-format`    |           Controls the log output format.           |                       `json`, `text`                        |      `text`       |
 |    `TALOSCONFIG_DIR`     | `--talosconfig-dir` |    Directory containing your talosconfig files.     |                  Any valid directory path                   |       `N/A`       |
 |      `TALOSCONFIG`       |        `N/A`        | Path where the selected talosconfig will be copied. |                     Any valid file path                     | `~/.talos/config` |
 
