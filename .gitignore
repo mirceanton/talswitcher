@@ -3,3 +3,4 @@ dist/
 .config
 .config.old
 .DS_Store
+configs/
