@@ -2,13 +2,13 @@
 
 `talswitcher` is a command-line tool for managing and switching between different Talos contexts. It simplifies the process of selecting a Talos context from multiple talosconfig files and updates the active configuration.
 
+Just dump all your `talosconfig` into a single dir and let `talswitcher` manage them for you!
+
 ## Features
 
-- **Non-Interactive Mode**: Specify the desired context directly as an argument.
-- **Interactive Mode**: Run the program with no arguments to get an interactive list of available contexts.
-- **Automatic Configuration Update**: Copies the selected context's talosconfig to the appropriate location for Talos.
-- **Duplicate Context Detection**: Ensures there are no duplicate context names across multiple talosconfig files.
-- **Shell Completions**: Provides tab completion for available context names in compatible shells.
+- **Multiple talosconfig files**: Manage multiple talosconfig files in a single directory without merging them
+- **Context switching**: Switch between contexts from multiple config files
+- **Interactive & non-interactive modes**: Select from a list or specify directly as an argument (with tab completion support!)
 
 ## Installation
 
@@ -19,15 +19,15 @@ Precompiled binaries are available for various platforms. You can download the l
 1. Download the appropriate binary for your system and extract the archive.
 2. Make the extracted binary executable:
 
-    ```bash
-    chmod +x talswitcher
-    ```
+   ```bash
+   chmod +x talswitcher
+   ```
 
 3. Move the binary to a directory in your PATH:
 
-    ```bash
-    mv talswitcher /usr/local/bin/
-    ```
+   ```bash
+   mv talswitcher /usr/local/bin/
+   ```
 
 ### Running via Docker
 
@@ -41,15 +41,15 @@ docker pull ghcr.io/mirceanton/talswitcher
 
 1. Add the tap
 
-    ```bash
-    brew tap mirceanton/taps
-    ```
+   ```bash
+   brew tap mirceanton/taps
+   ```
 
 2. Install `talswitcher`
 
-    ```bash
-    brew install talswitcher
-    ```
+   ```bash
+   brew install talswitcher
+   ```
 
 ### Install via `go install`
 
@@ -61,16 +61,16 @@ go install github.com/mirceanton/talswitcher@main
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/mirceanton/talswitcher
-    cd talswitcher
-    ```
+   ```bash
+   git clone https://github.com/mirceanton/talswitcher
+   cd talswitcher
+   ```
 
 2. Build the tool:
 
-    ```bash
-    go build -o talswitcher
-    ```
+   ```bash
+   go build -o talswitcher
+   ```
 
 ## Usage
 
@@ -85,7 +85,7 @@ The `context` (or `ctx`) subcommand is used to switch between Talos contexts:
 talswitcher context
 
 # Switch to a specific context
-talswitcher context my-context
+talswitcher ctx my-context
 
 # Switch to previous context
 talswitcher context -
@@ -113,10 +113,12 @@ talswitcher completion powershell > ~/talswitcher.ps1
 
 You can configure `talswitcher` using environment variables or CLI flags. The following table outlines the available options:
 
-|   Environment Variable   |      CLI Flag       |                     Description                     |                      Acceptable Values                      |   Default Value   |
-| :----------------------: | :-----------------: | :-------------------------------------------------: | :---------------------------------------------------------: | :---------------: |
-|    `TALOSCONFIG_DIR`     | `--talosconfig-dir` |    Directory containing your talosconfig files.     |                  Any valid directory path                   |       `N/A`       |
-|      `TALOSCONFIG`       |        `N/A`        | Path where the selected talosconfig will be copied. |                     Any valid file path                     | `~/.talos/config` |
+| Option                | Flag                | Environment Variable | Default             | Description                                                       |
+| --------------------- | ------------------- | -------------------- | ------------------- | ----------------------------------------------------------------- |
+| Talosconfig Directory | `--talosconfig-dir` | `TALOSCONFIG_DIR`    | `~/.talos/configs/` | Directory containing your talosconfig files                       |
+| Talosconfig           | `--talosconfig`     | `TALOSCONFIG`        | `~/.talos/config`   | Path to the currently active talosconfig file.                    |
+| Log Level             | `--log-level`       | `LOG_LEVEL`          | `info`              | Logging verbosity (trace, debug, info, warn, error, fatal, panic) |
+| Log Format            | `--log-format`      | `LOG_FORMAT`         | `text`              | Log output format (text, json)                                    |
 
 When both the environment variable and CLI flag are set, the CLI flag takes precedence.
 
