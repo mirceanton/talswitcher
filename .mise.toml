@@ -18,3 +18,18 @@ go = "1.25.2"
 "aqua:rhysd/actionlint" = "1"
 "npm:@commitlint/cli" = "20"
 "shellcheck" = "0.11"
+
+# =================================================================================================
+# TASKS
+# =================================================================================================
+[tasks."release"]
+description = "Run goreleaser in snapshot mode."
+run = "goreleaser release --snapshot --clean"
+
+[tasks."lint"]
+description = "Run golangci-lint in fix mode."
+run = "golangci-lint run --fix"
+
+[tasks."test"]
+description = "Run e2e tests."
+run = "bash scripts/test.sh"
