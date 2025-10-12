@@ -1,6 +1,5 @@
 talswitcher
 dist/
-.config
-.config.old
+test/
 .DS_Store
 configs/

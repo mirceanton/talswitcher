@@ -19,8 +19,8 @@ setup() {
     echo "========================================================================================="
     echo "Setting up Talos clusters..."
     echo "========================================================================================="
-    talosctl cluster create --name=test-cluster-1 --talosconfig=./configs/talos1.yaml --cidr=10.5.0.0/24 &
-    talosctl cluster create --name=test-cluster-2 --talosconfig=./configs/talos2.yaml --cidr=10.6.0.0/24 &
+    talosctl cluster create --name=talos-cluster-1 --talosconfig=$TALOSCONFIG_DIR/talos1.yaml --cidr=10.5.0.0/24 --wait=false &
+    talosctl cluster create --name=talos-cluster-2 --talosconfig=$TALOSCONFIG_DIR/talos2.yaml --cidr=10.6.0.0/24 --wait=false &
     wait
 
     echo "========================================================================================="
@@ -32,15 +32,15 @@ cleanup() {
     echo "Performing cleanup..."
 
     # Stop and delete talos clusters
-    echo "Stopping and deleting test-cluster-1..."
-    talosctl cluster destroy --name=test-cluster-1 || true
+    echo "Stopping and deleting talos-cluster-1..."
+    talosctl cluster destroy --name=talos-cluster-1 || true
 
-    echo "Stopping and deleting test-cluster-2..."
-    talosctl cluster destroy --name=test-cluster-2 || true
+    echo "Stopping and deleting talos-cluster-2..."
+    talosctl cluster destroy --name=talos-cluster-2 || true
 
     # Remove config directory
     echo "Removing configs directory..."
-    rm -rf ./configs/
+    rm -rf ${TALOSCONFIG_DIR:?}/
 
     echo "Cleanup completed."
 }
@@ -50,26 +50,26 @@ run_tests() {
     echo "Running tests..."
     echo "========================================================================================="
 
-    echo "====> Switching to test-cluster-1..."
-    ./talswitcher context test-cluster-1
+    echo "====> Switching to talos-cluster-1..."
+    ./talswitcher context talos-cluster-1
 
-    echo "====> Validating cluster switch to test-cluster-1..."
-    talosctl get members -n test-cluster-1-controlplane-1
+    echo "====> Validating cluster switch to talos-cluster-1..."
+    talosctl get members -n talos-cluster-1-controlplane-1
 
-    echo "====> Switching to test-cluster-2..."
-    ./talswitcher ctx test-cluster-2
+    echo "====> Switching to talos-cluster-2..."
+    ./talswitcher ctx talos-cluster-2
 
-    echo "====> Validating cluster switch to test-cluster-2..."
-    talosctl get members -n test-cluster-2-controlplane-1
+    echo "====> Validating cluster switch to talos-cluster-2..."
+    talosctl get members -n talos-cluster-2-controlplane-1
 
-    echo "====> Attempting to list members of test-cluster-1..."
-    talosctl get members -n test-cluster-1-controlplane-1 && exit 1 || echo "This was supposed to fail! We're good."
+    echo "====> Attempting to list members of talos-cluster-1..."
+    talosctl get members -n talos-cluster-1-controlplane-1 && exit 1 || echo "This was supposed to fail! We're good."
 
     echo "====> Switch to previous context..."
     ./talswitcher ctx -
 
-    echo "====> Validating cluster switch to test-cluster-1..."
-    talosctl get members -n test-cluster-1-controlplane-1
+    echo "====> Validating cluster switch to talos-cluster-1..."
+    talosctl get members -n talos-cluster-1-controlplane-1
 
     echo "========================================================================================="
     echo "Tests completed successfully!"
