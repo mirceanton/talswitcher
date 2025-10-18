@@ -66,6 +66,8 @@ github.com/siderolabs/crypto v0.6.3 h1:9eGHzAJQg7FvPcjVANLQKnepc0nrl5IkLJ3FxhMvs
 github.com/siderolabs/crypto v0.6.3/go.mod h1:LEhGuXlvwElMgh+rYjCFw6JgfOgyaC+sqsl/YwWU+EM=
 github.com/siderolabs/talos/pkg/machinery v1.11.2 h1:y6Vx1nTCDk0d6B87L0lJHh34kAEv5XeTX5smhdiNClY=
 github.com/siderolabs/talos/pkg/machinery v1.11.2/go.mod h1:BWuhCGOFzm0RWPQ61arPG6A3GWLbo0KXN69N+Be+6Eg=
+github.com/siderolabs/talos/pkg/machinery v1.11.3 h1:rFjwS1mqn3HtkbBP+GxZ7GKSW8J1jj28JuRTE0eERF0=
+github.com/siderolabs/talos/pkg/machinery v1.11.3/go.mod h1:BWuhCGOFzm0RWPQ61arPG6A3GWLbo0KXN69N+Be+6Eg=
 github.com/sirupsen/logrus v1.9.3 h1:dueUQJ1C2q9oE3F7wvmSGAaVtTmUizReu6fjN8uqzbQ=
 github.com/sirupsen/logrus v1.9.3/go.mod h1:naHLuLoDiP4jHNo9R0sCBMtWGeIprob74mVsIT4qYEQ=
 github.com/sourcegraph/conc v0.3.1-0.20240121214520-5f936abd7ae8 h1:+jumHNA0Wrelhe64i8F6HNlS8pkoyMv5sreGx2Ry5Rw=
