@@ -19,8 +19,8 @@ setup() {
     echo "========================================================================================="
     echo "Setting up Talos clusters..."
     echo "========================================================================================="
-    talosctl cluster create --name=talos-cluster-1 --talosconfig=$TALOSCONFIG_DIR/talos1.yaml --cidr=10.5.0.0/24 --wait=false &
-    talosctl cluster create --name=talos-cluster-2 --talosconfig=$TALOSCONFIG_DIR/talos2.yaml --cidr=10.6.0.0/24 --wait=false &
+    talosctl cluster create dev --name=talos-cluster-1 --talosconfig=$TALOSCONFIG_DIR/talos1.yaml --cidr=10.5.0.0/24 --wait=false &
+    talosctl cluster create dev --name=talos-cluster-2 --talosconfig=$TALOSCONFIG_DIR/talos2.yaml --cidr=10.6.0.0/24 --wait=false &
     wait
 
     echo "========================================================================================="
