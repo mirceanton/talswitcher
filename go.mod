@@ -2,7 +2,7 @@ module github.com/mirceanton/talswitcher
 
 go 1.25.3
 
-toolchain go1.25.7
+toolchain go1.26.0
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
