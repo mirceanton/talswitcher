@@ -5,7 +5,7 @@
 go = "1.26.3"
 golangci-lint = "2.12.2"
 "aqua:goreleaser/goreleaser" = "2.16.0"
-"aqua:siderolabs/talos" = "1.13.2"
+"aqua:siderolabs/talos" = "1.13.3"
 
 # =================================================================================================
 # Misc Tools
