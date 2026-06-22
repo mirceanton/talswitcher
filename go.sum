@@ -106,6 +106,8 @@ github.com/siderolabs/talos/pkg/machinery v1.13.3 h1:+8pPT7UZUSxbmwAor81/uleQla9
 github.com/siderolabs/talos/pkg/machinery v1.13.3/go.mod h1:RdU2CNuyxPLXpxVYgJlK3XxIw0QIleSR3I8T+x1cxZU=
 github.com/siderolabs/talos/pkg/machinery v1.13.4 h1:wwvvP4s9AwPW3N7BcWI/4nKdJ+e0fTHev3i+sVWMmMc=
 github.com/siderolabs/talos/pkg/machinery v1.13.4/go.mod h1:RdU2CNuyxPLXpxVYgJlK3XxIw0QIleSR3I8T+x1cxZU=
+github.com/siderolabs/talos/pkg/machinery v1.13.5 h1:lTgyxR2o//Ppi9rmIC6RPO3UDZBVzCM7MrsU+OKVF+o=
+github.com/siderolabs/talos/pkg/machinery v1.13.5/go.mod h1:RdU2CNuyxPLXpxVYgJlK3XxIw0QIleSR3I8T+x1cxZU=
 github.com/sirupsen/logrus v1.9.3 h1:dueUQJ1C2q9oE3F7wvmSGAaVtTmUizReu6fjN8uqzbQ=
 github.com/sirupsen/logrus v1.9.3/go.mod h1:naHLuLoDiP4jHNo9R0sCBMtWGeIprob74mVsIT4qYEQ=
 github.com/sirupsen/logrus v1.9.4 h1:TsZE7l11zFCLZnZ+teH4Umoq5BhEIfIzfRDZ1Uzql2w=
