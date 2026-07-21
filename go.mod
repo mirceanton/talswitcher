@@ -4,7 +4,7 @@ go 1.26.5
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
-	github.com/siderolabs/talos/pkg/machinery v1.13.6
+	github.com/siderolabs/talos/pkg/machinery v1.13.7
 	github.com/sirupsen/logrus v1.9.4
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
