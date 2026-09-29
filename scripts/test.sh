@@ -6,6 +6,13 @@ export TALOSCONFIG_DIR="./test/configs/"
 export TALOSCONFIG="./test/config"
 mkdir -p $TALOSCONFIG_DIR
 
+# Address the nodes by IP (first host of the subnets used in setup()) rather than
+# by name. Talos generates the machine hostname, which ends up in the node's TLS
+# certificate, so it does not match the container name and `-n <name>` fails
+# certificate verification.
+CLUSTER1_NODE="10.5.0.2"
+CLUSTER2_NODE="10.6.0.2"
+
 setup() {
     echo "Performing setup..."
 
@@ -54,22 +61,22 @@ run_tests() {
     ./talswitcher context talos-cluster-1
 
     echo "====> Validating cluster switch to talos-cluster-1..."
-    talosctl get members -n talos-cluster-1-controlplane-1
+    talosctl get members -n "$CLUSTER1_NODE"
 
     echo "====> Switching to talos-cluster-2..."
     ./talswitcher ctx talos-cluster-2
 
     echo "====> Validating cluster switch to talos-cluster-2..."
-    talosctl get members -n talos-cluster-2-controlplane-1
+    talosctl get members -n "$CLUSTER2_NODE"
 
     echo "====> Attempting to list members of talos-cluster-1..."
-    talosctl get members -n talos-cluster-1-controlplane-1 && exit 1 || echo "This was supposed to fail! We're good."
+    talosctl get members -n "$CLUSTER1_NODE" && exit 1 || echo "This was supposed to fail! We're good."
 
     echo "====> Switch to previous context..."
     ./talswitcher ctx -
 
     echo "====> Validating cluster switch to talos-cluster-1..."
-    talosctl get members -n talos-cluster-1-controlplane-1
+    talosctl get members -n "$CLUSTER1_NODE"
 
     echo "========================================================================================="
     echo "Tests completed successfully!"
