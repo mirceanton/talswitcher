@@ -13,6 +13,21 @@ on:
       - "**.go"
       - "go.mod"
       - "go.sum"
+      - ".mise.toml"
+      - "mise.lock"
+  # Renovate automerges minor/patch bumps by pushing a branch and fast-forwarding
+  # main (no PR), so the pull_request trigger above never fires for them. Run the
+  # e2e test on those branches too so a bump that breaks it gets caught.
+  push:
+    branches: ["renovate/**"]
+    paths:
+      - ".github/workflows/test.yaml"
+      - scripts/test.sh
+      - "**.go"
+      - "go.mod"
+      - "go.sum"
+      - ".mise.toml"
+      - "mise.lock"
 
 jobs:
   test:
