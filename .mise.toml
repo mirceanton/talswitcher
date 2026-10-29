@@ -19,6 +19,11 @@ golangci-lint = "2.15.0"
 "shellcheck" = "0.11"
 "ubi:caarlos0/svu" = "latest"
 
+[settings]
+# Hold back freshly published tool releases (supply-chain protection).
+minimum_release_age = "3d"
+
+
 # =================================================================================================
 # TASKS
 # =================================================================================================
